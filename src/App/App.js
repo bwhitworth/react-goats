@@ -22,7 +22,13 @@ class App extends React.Component {
     goatData.useGoat(goatId);
     const newGoatsArray = goatData.getGoats();
     this.setState({ goats: newGoatsArray });
-  };
+  }
+
+  freeAGoat = (goatId) => {
+    goatData.freeGoat(goatId);
+    const goats = goatData.getGoats();
+    this.setState({ goats });
+  }
 
   render() {
     // inside render - anything we need to modify the UI
@@ -30,7 +36,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>GOAT YOGA LTD</h1>
-        <GoatCorral goats={this.state.goats} useAGoat={this.useAGoat}/>
+        <GoatCorral goats={this.state.goats} useAGoat={this.useAGoat} freeAGoat={this.freeAGoat}/>
       </div>
     );
   }
