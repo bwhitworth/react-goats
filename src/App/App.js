@@ -18,13 +18,19 @@ class App extends React.Component {
     this.setState({ goats: goatsArray });
   }
 
+  useAGoat = (goatId) => {
+    goatData.useGoat(goatId);
+    const newGoatsArray = goatData.getGoats();
+    this.setState({ goats: newGoatsArray });
+  };
+
   render() {
     // inside render - anything we need to modify the UI
     // only displaying something with the data that is available from ^
     return (
       <div className="App">
         <h1>GOAT YOGA LTD</h1>
-        <GoatCorral goats={this.state.goats}/>
+        <GoatCorral goats={this.state.goats} useAGoat={this.useAGoat}/>
       </div>
     );
   }
