@@ -2,21 +2,35 @@ import React from 'react';
 import './App.scss';
 import goatData from '../helpers/data/goatData';
 
+import GoatCorral from '../components/GoatCorral/GoatCorral';
+
+
 class App extends React.Component {
   // outside render - anything that modifies state
   // anything that changes the data
-  componentDidMount() {
-    const goats = goatData.getGoats();
-    console.error('goats:', goats);
+  state = {
+    goats: [],
   }
+
+  componentDidMount() {
+    const goatsArray = goatData.getGoats();
+    console.error('goats:', goatsArray);
+    this.setState({ goats: goatsArray });
+  }
+
+  useAGoat = (goatId) => {
+    goatData.useGoat(goatId);
+    const newGoatsArray = goatData.getGoats();
+    this.setState({ goats: newGoatsArray });
+  };
 
   render() {
     // inside render - anything we need to modify the UI
     // only displaying something with the data that is available from ^
     return (
       <div className="App">
-        <h2>INSIDE APP COMPONENT</h2>
-        <button className="btn btn-info">GOATS!</button>
+        <h1>GOAT YOGA LTD</h1>
+        <GoatCorral goats={this.state.goats} useAGoat={this.useAGoat}/>
       </div>
     );
   }

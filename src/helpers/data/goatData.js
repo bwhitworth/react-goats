@@ -223,4 +223,13 @@ const goats = [
 
 const getGoats = () => goats;
 
-export default { getGoats };
+const useGoat = (goatId) => {
+  goats.forEach((singleGoat) => {
+    if (singleGoat.id === goatId) {
+      // eslint-disable-next-line no-param-reassign
+      singleGoat.isBusy = true;
+    }
+  });
+};
+
+export default { getGoats, useGoat };
