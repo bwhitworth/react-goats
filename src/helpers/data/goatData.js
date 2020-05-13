@@ -232,4 +232,13 @@ const useGoat = (goatId) => {
   });
 };
 
-export default { getGoats, useGoat };
+const freeGoat = (goatId) => {
+  goats.forEach((singleGoat) => {
+    if (singleGoat.id === goatId) {
+      // eslint-disable-next-line no-param-reassign
+      singleGoat.isBusy = false;
+    }
+  });
+};
+
+export default { getGoats, useGoat, freeGoat };
